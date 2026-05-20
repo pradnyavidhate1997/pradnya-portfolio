@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pradnya Kamble | Teaching Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — LUXURY EDUCATOR PALETTE
+    ═══════════════════════════════════════════ */
+    :root {
+      /* Deep midnight ink + warm champagne gold */
+      --ink:          #0a0c14;
+      --ink-2:        #111420;
+      --ink-3:        #181c2e;
+      --ink-4:        #1f2440;
+
+      --gold:         #c9a96e;
+      --gold-lt:      #e8cc99;
+      --gold-dk:      #a07c45;
+      --gold-glow:    rgba(201,169,110,0.18);
+
+      --rose:         #d4858a;
+      --rose-lt:      #f0b4b8;
+      --teal:         #5bcfbf;
+      --teal-dk:      #38a898;
+
+      --alabaster:    #f5f0e8;
+      --parchment:    #ede6d6;
+      --cream:        #faf7f2;
+
+      --text:         #f0ebe0;
+      --text-2:       #c8bfa8;
+      --text-3:       #8a8070;
+      --text-inv:     #0a0c14;
+
+      --glass:        rgba(255,255,255,0.04);
+      --glass-2:      rgba(255,255,255,0.07);
+      --glass-3:      rgba(255,255,255,0.11);
+      --border:       rgba(201,169,110,0.14);
+      --border-2:     rgba(201,169,110,0.28);
+      --border-3:     rgba(201,169,110,0.45);
+
+      --shadow-sm:    0 2px 12px rgba(0,0,0,0.35);
+      --shadow-md:    0 8px 40px rgba(0,0,0,0.5);
+      --shadow-lg:    0 20px 80px rgba(0,0,0,0.6);
+      --shadow-gold:  0 0 40px rgba(201,169,110,0.22);
+      --shadow-gold2: 0 0 80px rgba(201,169,110,0.12);
+
+      --ff-display:   'DM Serif Display', 'Playfair Display', Georgia, serif;
+      --ff-serif:     'Playfair Display', Georgia, serif;
+      --ff-sans:      'DM Sans', system-ui, sans-serif;
+
+      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur:          0.45s;
+      --dur-fast:     0.25s;
+      --dur-slow:     0.7s;
+
+      --radius-sm:    8px;
+      --radius:       14px;
+      --radius-lg:    22px;
+      --radius-xl:    32px;
+
+      --nav-h:        76px;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--ink);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: rgba(201,169,110,0.28); color: var(--text); }
+
+    img  { max-width: 100%; display: block; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════ */
+    #cursor-dot, #cursor-ring {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      will-change: left, top;
+    }
+    #cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      top: 0; left: 0;
+      transition: opacity 0.3s;
+    }
+    #cursor-ring {
+      width: 32px; height: 32px;
+      border: 1.5px solid rgba(201,169,110,0.55);
+      top: 0; left: 0;
+      transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring), border-color 0.35s, background 0.35s;
+    }
+    body:has(a:hover) #cursor-ring,
+    body:has(button:hover) #cursor-ring {
+      width: 48px; height: 48px;
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.08);
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL PROGRESS
+    ═══════════════════════════════════════════ */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt));
+      z-index: 10000;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 12px rgba(201,169,110,0.7);
+    }
+
+    /* ═══════════════════════════════════════════
+       LOADER
+    ═══════════════════════════════════════════ */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--ink);
+      z-index: 99999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 28px;
+      transition: opacity 0.8s var(--ease), visibility 0.8s;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-logo {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold), var(--gold-dk));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .loader-subtitle {
+      font-family: var(--ff-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .loader-bar {
+      width: 180px; height: 1px;
+      background: rgba(201,169,110,0.2);
+      border-radius: 1px; overflow: hidden;
+    }
+    .loader-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt));
+      animation: loaderFill 2s var(--ease) forwards;
+    }
+    @keyframes loaderFill { from { width: 0% } to { width: 100% } }
+
+    /* ═══════════════════════════════════════════
+       ANIMATED BACKGROUND — ATMOSPHERIC
+    ═══════════════════════════════════════════ */
+    #bg-canvas {
+      position: fixed; inset: 0;
+      z-index: 0; pointer-events: none; opacity: 0.6;
+    }
+
+    /* Noise grain overlay */
+    .grain {
+      position: fixed; inset: -200%;
+      width: 400%; height: 400%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: grainMove 0.4s steps(1) infinite;
+    }
+    @keyframes grainMove {
+      0%   { transform: translate(0,0); }
+      20%  { transform: translate(-5%, -10%); }
+      40%  { transform: translate(-15%, 5%); }
+      60%  { transform: translate(7%, -25%); }
+      80%  { transform: translate(-5%, 10%); }
+      100% { transform: translate(15%, 5%); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed; border-radius: 50%;
+      pointer-events: none; z-index: 0;
+      animation: orbFloat 22s var(--ease) infinite;
+    }
+    .orb-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
+      top: -20%; left: -15%;
+      animation-duration: 28s;
+    }
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(91,207,191,0.06) 0%, transparent 70%);
+      bottom: -10%; right: -10%;
+      animation-duration: 22s; animation-delay: -11s;
+    }
+    .orb-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,133,138,0.05) 0%, transparent 70%);
+      top: 45%; left: 55%;
+      animation-duration: 32s; animation-delay: -8s;
+    }
+    @keyframes orbFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(30px,-50px) scale(1.04); }
+      66%      { transform: translate(-20px, 30px) scale(0.97); }
+    }
+
+    /* Elegant mesh grid */
+    .mesh-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,169,110,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,169,110,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════ */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 36px;
+      position: relative; z-index: 2;
+    }
+
+    section {
+      position: relative; z-index: 2;
+      padding: 130px 0; overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY SYSTEM
+    ═══════════════════════════════════════════ */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 36px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 400; line-height: 1.1;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      font-size: 1rem; color: var(--text-2);
+      max-width: 500px; margin-bottom: 64px;
+      line-height: 1.85; font-weight: 300;
+    }
+
+    .section-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 16px 0 20px;
+    }
+    .section-divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      max-width: 60px;
+    }
+    .section-divider-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════ */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    [data-reveal="up"]    { transform: translateY(48px); }
+    [data-reveal="left"]  { transform: translateX(-48px); }
+    [data-reveal="right"] { transform: translateX(48px); }
+    [data-reveal="zoom"]  { transform: scale(0.9); }
+    [data-reveal].revealed { opacity: 1; transform: none; }
+
+    /* ═══════════════════════════════════════════
+       SECTION SEPARATOR
+    ═══════════════════════════════════════════ */
+    .section-sep {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.2), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVBAR — THIN LUXURY BAR
+    ═══════════════════════════════════════════ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      padding: 0;
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-bottom var(--dur);
+    }
+    #navbar.scrolled {
+      background: rgba(10, 12, 20, 0.92);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border-bottom: 1px solid rgba(201,169,110,0.12);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+    }
+
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.35rem; font-weight: 400;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 60%, var(--gold-dk) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-2);
+      position: relative;
+      transition: color var(--dur-fast) var(--ease);
+      padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transition: width var(--dur) var(--ease-out);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-lt); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    .nav-cta {
+      background: transparent !important;
+      border: 1px solid var(--border-2) !important;
+      color: var(--gold) !important;
+      padding: 8px 22px;
+      border-radius: 2px !important;
+      letter-spacing: 0.18em !important;
+      font-size: 0.7rem !important;
+      font-weight: 500 !important;
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease) !important;
+    }
+    .nav-cta:hover {
+      background: rgba(201,169,110,0.1) !important;
+      border-color: var(--gold) !important;
+      color: var(--gold-lt) !important;
+    }
+    .nav-cta::after { display: none !important; }
+
+    .nav-hamburger {
+      display: none; flex-direction: column;
+      gap: 6px; cursor: none; padding: 4px;
+      background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: var(--gold); border-radius: 1px;
+      transition: var(--dur) var(--ease);
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      position: fixed; top: 0; right: -100%;
+      width: min(300px, 82vw); height: 100vh;
+      background: rgba(10,12,20,0.98);
+      backdrop-filter: blur(28px);
+      z-index: 999;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 28px;
+      transition: right var(--dur-slow) var(--ease-out);
+      border-left: 1px solid var(--border);
+    }
+    .nav-mobile.open { right: 0; }
+    .nav-mobile a {
+      font-family: var(--ff-display);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--text-2);
+      letter-spacing: 0.05em;
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .nav-mobile a:hover { color: var(--gold); }
+
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 998;
+      background: rgba(0,0,0,0.55);
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--dur) var(--ease);
+      backdrop-filter: blur(2px);
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ═══════════════════════════════════════════
+       HERO — EDITORIAL MAGAZINE LAYOUT
+    ═══════════════════════════════════════════ */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 140px 0 100px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow-line { width: 48px; height: 1px; background: var(--gold); }
+    .hero-eyebrow-text {
+      font-size: 0.7rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); font-weight: 400;
+    }
+
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3.2rem, 7.5vw, 5.5rem);
+      font-weight: 400; line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .hero-title-italic {
+      font-style: italic;
+      color: var(--gold-lt);
+      display: block;
+    }
+
+    .hero-role-wrap {
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--text-2); margin-bottom: 32px;
+      min-height: 30px;
+      letter-spacing: 0.02em;
+    }
+    #typing-text { color: var(--teal); font-weight: 400; }
+    .typing-cursor {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--teal); margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-desc {
+      font-size: 0.92rem; color: var(--text-2); line-height: 1.9;
+      max-width: 440px; margin-bottom: 44px; font-weight: 300;
+    }
+    .hero-desc-item {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 8px;
+    }
+    .hero-desc-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    /* Primary button — luxury outlined */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--gold-lt);
+      padding: 13px 30px;
+      border-radius: 2px;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      border: 1px solid var(--border-2);
+      cursor: none;
+      position: relative; overflow: hidden;
+      transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      transform: translateX(-101%);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .btn-primary:hover { color: var(--ink); border-color: transparent; }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary i, .btn-primary span { position: relative; z-index: 1; }
+
+    /* Ghost button */
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      padding: 13px 30px;
+      border-radius: 2px;
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: none;
+      backdrop-filter: blur(12px);
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    }
+    .btn-ghost:hover {
+      background: var(--glass-3); border-color: var(--border-2); color: var(--text);
+    }
+
+    .hero-socials { display: flex; gap: 14px; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 2px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      display: grid; place-items: center;
+      font-size: 0.85rem; color: var(--text-2);
+      backdrop-filter: blur(12px);
+      transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-spring);
+    }
+    .social-icon:hover {
+      background: rgba(201,169,110,0.15);
+      border-color: var(--gold);
+      color: var(--gold-lt);
+      transform: translateY(-3px);
+    }
+
+    /* Hero image panel */
+    .hero-image-wrap {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-img-ring {
+      position: relative;
+      width: 400px; height: 400px;
+    }
+
+    /* Decorative geometric frame */
+    .hero-frame {
+      position: absolute;
+      inset: -20px;
+      border: 1px solid rgba(201,169,110,0.18);
+      border-radius: 50%;
+      animation: frameSpin 30s linear infinite;
+    }
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 16px var(--gold);
+    }
+    @keyframes frameSpin { to { transform: rotate(360deg); } }
+
+    .hero-frame-2 {
+      position: absolute; inset: -44px;
+      border: 1px solid rgba(201,169,110,0.07);
+      border-radius: 50%;
+      animation: frameSpin 50s linear infinite reverse;
+    }
+
+    .hero-img-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--ink-3), var(--ink-4));
+      border: 2px solid rgba(201,169,110,0.25);
+      box-shadow: 0 30px 100px rgba(0,0,0,0.7), 0 0 60px rgba(201,169,110,0.12), inset 0 0 60px rgba(201,169,110,0.04);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Floating info cards */
+    .hero-badge {
+      position: absolute;
+      background: rgba(10,12,20,0.92);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-size: 0.78rem; font-weight: 400;
+      animation: badgeFloat 6s var(--ease) infinite;
+    }
+    .hero-badge-1 { top: 12%; right: -28px; animation-delay: -2s; }
+    .hero-badge-2 { bottom: 16%; left: -28px; animation-delay: -4s; }
+    .hero-badge i { color: var(--gold); margin-right: 6px; }
+    @keyframes badgeFloat {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* Decorative corner accents */
+    .hero-corner {
+      position: absolute; width: 50px; height: 50px;
+    }
+    .hero-corner-tl { top: -8px; left: -8px; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+    .hero-corner-br { bottom: -8px; right: -8px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+
+    .scroll-indicator {
+      position: absolute; bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      color: var(--text-3);
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      animation: fadeInUp 1s 1.8s both;
+    }
+    .scroll-mouse {
+      width: 20px; height: 34px;
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 10px;
+      display: flex; justify-content: center; padding-top: 6px;
+    }
+    .scroll-wheel {
+      width: 2px; height: 7px;
+      background: var(--gold); border-radius: 2px;
+      animation: scrollWheel 2.2s infinite;
+    }
+    @keyframes scrollWheel {
+      0%   { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(10px); opacity: 0; }
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateX(-50%) translateY(20px); }
+      to   { opacity:1; transform:translateX(-50%) translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT SECTION
+    ═══════════════════════════════════════════ */
+    #about { background: transparent; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px; align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+
+    .about-img-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      aspect-ratio: 3/4; max-height: 500px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-lg), var(--shadow-gold2);
+      position: relative;
+    }
+    .about-img-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(10,12,20,0.8) 100%);
+      z-index: 1;
+    }
+    .about-real-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+    .about-img-card:hover .about-real-img { transform: scale(1.04); }
+
+    /* Decorative accent lines */
+    .about-img-wrap::before {
+      content: '';
+      position: absolute; top: -20px; left: -20px;
+      width: 80px; height: 80px;
+      border-top: 1.5px solid var(--gold);
+      border-left: 1.5px solid var(--gold);
+      opacity: 0.5;
+    }
+    .about-img-wrap::after {
+      content: '';
+      position: absolute; bottom: -20px; right: -20px;
+      width: 80px; height: 80px;
+      border-bottom: 1.5px solid var(--gold);
+      border-right: 1.5px solid var(--gold);
+      opacity: 0.5;
+    }
+
+    .about-quote {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.06));
+      border: 1px solid var(--border-2);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
+      max-width: 230px;
+      z-index: 10;
+      box-shadow: var(--shadow-md), var(--shadow-gold);
+    }
+    .about-quote-text {
+      font-family: var(--ff-serif);
+      font-size: 0.88rem;
+      font-style: italic;
+      line-height: 1.6; color: var(--text);
+    }
+    .about-quote-author {
+      font-size: 0.72rem; color: var(--gold);
+      margin-top: 10px; letter-spacing: 0.06em;
+    }
+
+    /* Philosophy cards */
+    .philosophy-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius-sm);
+      padding: 22px 26px;
+      margin-bottom: 16px;
+      position: relative; overflow: hidden;
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease);
+    }
+    .philosophy-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      opacity: 0; transition: opacity var(--dur-fast) var(--ease);
+    }
+    .philosophy-card:hover {
+      background: var(--glass-2);
+      border-color: var(--border-2);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-sm), var(--shadow-gold);
+    }
+    .philosophy-card:hover::before { opacity: 1; }
+    .philosophy-card-head {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 10px;
+    }
+    .philosophy-icon {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.08));
+      border: 1px solid var(--border-2);
+      display: grid; place-items: center;
+      font-size: 0.85rem; color: var(--gold); flex-shrink: 0;
+    }
+    .philosophy-card-title {
+      font-weight: 500; font-size: 0.9rem; color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .philosophy-card p {
+      font-size: 0.85rem; color: var(--text-2); line-height: 1.8; font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════════════
+       ACADEMIC SECTION
+    ═══════════════════════════════════════════ */
+    .academic-pdf-card {
+      max-width: 680px;
+      margin: 64px auto 0;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      box-shadow: var(--shadow-lg), var(--shadow-gold2);
+      transition: transform var(--dur) var(--ease-spring), box-shadow var(--dur) var(--ease);
+    }
+    .academic-pdf-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.07) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .academic-pdf-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .academic-pdf-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg), var(--shadow-gold);
+    }
+    .pdf-icon {
+      font-size: 3.5rem; margin-bottom: 24px;
+      color: var(--rose);
+      filter: drop-shadow(0 4px 20px rgba(212,133,138,0.4));
+    }
+    .academic-pdf-card h3 {
+      font-family: var(--ff-display);
+      font-size: 1.9rem; font-weight: 400;
+      margin-bottom: 16px; color: var(--text);
+    }
+    .academic-pdf-card p {
+      color: var(--text-2); line-height: 1.8; margin-bottom: 36px;
+      font-size: 0.92rem; font-weight: 300;
+    }
+    .pdf-buttons {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ═══════════════════════════════════════════
+       SUBSECTION TABS — SLIM LINE TABS
+    ═══════════════════════════════════════════ */
+    .subsection-tabs {
+      display: flex; flex-wrap: wrap; gap: 0;
+      margin-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .subsection-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: 0;
+      font-size: 0.76rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      color: var(--text-3);
+      cursor: none;
+      transition: color var(--dur-fast) var(--ease), border-bottom-color var(--dur-fast) var(--ease);
+    }
+    .subsection-tab:hover { color: var(--text-2); }
+    .subsection-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .subsection-panel { display: none; }
+    .subsection-panel.active { display: block; }
+
+    /* ═══════════════════════════════════════════
+       SEMESTER TABS
+    ═══════════════════════════════════════════ */
+    .semester-tabs {
+      display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;
+    }
+    .semester-tab {
+      padding: 8px 22px; border-radius: 2px;
+      font-size: 0.74rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      cursor: none;
+      backdrop-filter: blur(12px);
+      transition: all var(--dur-fast) var(--ease);
+    }
+    .semester-tab:hover { border-color: var(--border-2); color: var(--text-2); }
+    .semester-tab.active {
+      background: rgba(201,169,110,0.12);
+      border-color: var(--gold);
+      color: var(--gold-lt);
+    }
+
+    .semester-panel { display: none; }
+    .semester-panel.active { display: block; }
+
+    /* ═══════════════════════════════════════════
+       CATEGORY HEADINGS
+    ═══════════════════════════════════════════ */
+    .category-heading {
+      display: flex; align-items: center; gap: 14px;
+      margin: 44px 0 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-heading:first-child { margin-top: 0; }
+    .category-heading-icon {
+      width: 34px; height: 34px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(201,169,110,0.18), rgba(201,169,110,0.06));
+      border: 1px solid var(--border-2);
+      display: grid; place-items: center;
+      font-size: 0.8rem; color: var(--gold); flex-shrink: 0;
+    }
+    .category-heading-title {
+      font-family: var(--ff-serif);
+      font-size: 1.2rem; font-weight: 600; color: var(--text);
+    }
+    .category-heading-sub {
+      font-size: 0.72rem; color: var(--text-3);
+      margin-left: auto; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       PDF GRID CARDS — PREMIUM
+    ═══════════════════════════════════════════ */
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .pdf-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      cursor: none;
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast) var(--ease);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+    }
+    .pdf-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity var(--dur-fast) var(--ease);
+    }
+    .pdf-card:hover {
+      background: var(--glass-2);
+      border-color: var(--border-2);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md), var(--shadow-gold);
+    }
+    .pdf-card:hover::after { opacity: 1; }
+
+    .pdf-icon-wrap {
+      width: 56px; height: 70px;
+      background: linear-gradient(175deg, #c0392b 0%, #922b21 100%);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(192,57,43,0.35);
+    }
+    .pdf-icon-wrap::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 12px 12px 0;
+      border-color: transparent rgba(255,255,255,0.2) transparent transparent;
+    }
+    .pdf-icon-wrap i { font-size: 1.5rem; color: #fff; }
+
+    .pdf-title {
+      font-weight: 500; font-size: 0.85rem; color: var(--text); line-height: 1.5;
+    }
+    .pdf-meta { font-size: 0.72rem; color: var(--text-3); }
+
+    .pdf-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold);
+      padding: 7px 16px;
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 2px;
+      background: rgba(201,169,110,0.06);
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+      cursor: none; margin-top: auto;
+    }
+    .pdf-btn:hover {
+      background: rgba(201,169,110,0.14);
+      border-color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       MICRO-TEACHING / MODERN GALLERY
+    ═══════════════════════════════════════════ */
+    .modern-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 200px;
+      gap: 14px;
+    }
+    .modern-gallery-item {
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--ink-3), var(--ink-4));
+      border: 1px solid var(--border);
+      overflow: hidden; position: relative;
+      cursor: none;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), z-index 0s;
+    }
+    .modern-gallery-item.tall { grid-row: span 2; }
+    .modern-gallery-item.wide { grid-column: span 2; }
+    .modern-gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.7s var(--ease);
+    }
+    .modern-gallery-item:hover {
+      transform: scale(1.02);
+      border-color: rgba(201,169,110,0.35);
+      box-shadow: var(--shadow-md), var(--shadow-gold);
+      z-index: 2;
+    }
+    .modern-gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(10,12,20,0.75) 100%);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity var(--dur-fast) var(--ease);
+    }
+    .modern-gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay i { font-size: 1.6rem; color: var(--gold-lt); }
+    .modern-gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-2);
+      opacity: 0; transition: opacity var(--dur-fast) var(--ease);
+    }
+    .modern-gallery-item:hover .modern-gallery-caption { opacity: 1; }
+
+    /* ═══════════════════════════════════════════
+       INTERNSHIP WRAPPER
+    ═══════════════════════════════════════════ */
+    .internship-doc-wrapper {
+      margin-top: 28px;
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-md), var(--shadow-gold2);
+      position: relative; overflow: hidden;
+    }
+    .internship-doc-wrapper::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .internship-doc-title {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 400;
+      margin-bottom: 28px; text-align: center;
+      color: var(--text); letter-spacing: 0.01em;
+    }
+
+    .internship-media-grid {
+      display: flex; justify-content: center;
+      align-items: stretch; gap: 22px; flex-wrap: wrap;
+    }
+
+    .internship-card {
+      width: 260px;
+      background: var(--glass-2);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: none;
+      transition: transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+      text-decoration: none;
+    }
+    .internship-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-2);
+      box-shadow: var(--shadow-md), var(--shadow-gold);
+    }
+    .internship-thumb {
+      height: 150px;
+      background: linear-gradient(135deg, var(--ink-3), var(--ink-4));
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .internship-thumb::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,169,110,0.06) 0%, transparent 70%);
+    }
+    .internship-thumb-icon { font-size: 2.8rem; opacity: 0.18; }
+    .internship-type-badge {
+      position: absolute; top: 10px; right: 10px;
+      font-size: 0.65rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 2px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .badge-img  { background: rgba(91,207,191,0.15); border: 1px solid rgba(91,207,191,0.35); color: var(--teal); }
+    .badge-vid  { background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.3); color: var(--gold); }
+    .badge-pdf  { background: rgba(212,133,138,0.12); border: 1px solid rgba(212,133,138,0.3); color: var(--rose-lt); }
+
+    .internship-body { padding: 18px 20px; }
+    .internship-title { font-weight: 500; font-size: 0.88rem; color: var(--text); line-height: 1.4; }
+    .internship-sub   { font-size: 0.78rem; color: var(--text-3); margin-top: 4px; }
+
+    /* ═══════════════════════════════════════════
+       CONTACT SECTION
+    ═══════════════════════════════════════════ */
+    .contact-info-cards { display: flex; flex-direction: column; gap: 14px; }
+    .contact-info-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+      transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-spring);
+    }
+    .contact-info-card:hover {
+      background: var(--glass-2);
+      border-color: var(--border-2);
+      transform: translateX(5px);
+    }
+    .contact-info-icon {
+      width: 42px; height: 42px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(201,169,110,0.18), rgba(201,169,110,0.06));
+      border: 1px solid var(--border-2);
+      display: grid; place-items: center;
+      font-size: 0.9rem; color: var(--gold); flex-shrink: 0;
+    }
+    .contact-info-label {
+      font-size: 0.68rem; color: var(--text-3);
+      margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .contact-info-value { font-size: 0.9rem; font-weight: 400; color: var(--text); }
+
+    /* ═══════════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════════ */
+    #lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.96);
+      z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+      backdrop-filter: blur(8px);
+    }
+    #lightbox.open { opacity: 1; pointer-events: auto; }
+    #lightbox-img {
+      max-width: 90%; max-height: 90%;
+      border-radius: var(--radius);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 60px rgba(201,169,110,0.1);
+      transform: scale(0.92);
+      transition: transform 0.4s var(--ease-spring);
+    }
+    #lightbox.open #lightbox-img { transform: scale(1); }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 24px;
+      width: 42px; height: 42px;
+      background: var(--glass-2); border: 1px solid var(--border);
+      border-radius: 2px;
+      display: grid; place-items: center;
+      font-size: 1rem; cursor: none; color: var(--text-2);
+      transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+    }
+    .lightbox-close:hover {
+      background: rgba(201,169,110,0.15); color: var(--gold); border-color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      position: relative; z-index: 2;
+      background: rgba(0,0,0,0.45);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 36px;
+      overflow: hidden;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-lt), var(--gold), transparent);
+      opacity: 0.6;
+    }
+    footer::after {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 200px;
+      background: radial-gradient(ellipse at top, rgba(201,169,110,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 24px;
+      margin-bottom: 36px;
+    }
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 1.45rem; font-weight: 400;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-3);
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-copy {
+      text-align: center; font-size: 0.76rem; color: var(--text-3);
+      padding-top: 28px; border-top: 1px solid var(--border);
+      letter-spacing: 0.06em;
+    }
+    .footer-copy span { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+    ═══════════════════════════════════════════ */
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+      border: none; border-radius: 2px;
+      color: var(--ink); font-size: 0.9rem;
+      cursor: none; z-index: 500;
+      box-shadow: 0 8px 28px rgba(201,169,110,0.4);
+      display: grid; place-items: center;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur-fast) var(--ease);
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { box-shadow: 0 12px 40px rgba(201,169,110,0.6); }
+
+    /* ═══════════════════════════════════════════
+       TAGS & BADGES
+    ═══════════════════════════════════════════ */
+    .tag {
+      background: rgba(91,207,191,0.1);
+      border: 1px solid rgba(91,207,191,0.25);
+      color: var(--teal);
+      font-size: 0.7rem; font-weight: 500;
+      padding: 3px 11px; border-radius: 2px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ═══════════════════════════════════════════
+       GALLERY ALBUM CARD (standalone below gallery)
+    ═══════════════════════════════════════════ */
+    .gallery-album-wrap {
+      padding: 0 36px 60px;
+      position: relative; z-index: 2;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-image-wrap { order: -1; }
+      .hero-img-ring { width: 300px; height: 300px; }
+      .hero-badge { display: none; }
+      .about-quote { display: none; }
+      .modern-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .modern-gallery-item.wide { grid-column: span 1; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 90px 0; }
+      .container { padding: 0 22px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-img-ring { width: 240px; height: 240px; }
+      .pdf-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .modern-gallery-grid { grid-template-columns: 1fr 1fr; }
+      .modern-gallery-item.tall { grid-row: span 1; }
+      .subsection-tab { padding: 10px 16px; font-size: 0.68rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .internship-card { width: 100%; max-width: 340px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .modern-gallery-grid { grid-template-columns: 1fr; }
+      .pdf-grid { grid-template-columns: 1fr 1fr; }
+      .hero-img-ring { width: 200px; height: 200px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       ADDITIONAL UTILITY ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmerGold {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+    .gold-shimmer {
+      background: linear-gradient(90deg, var(--text) 30%, var(--gold-lt) 50%, var(--text) 70%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerGold 5s linear infinite;
+    }
+
+    /* ─── Hero profile image ─── */
+    .hero-profile-img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* ─── About real image fill ─── */
+    .about-real-img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Contact centered panel */
+    .contact-grid {
+      display: flex; justify-content: center;
+    }
+    .contact-panel {
+      width: 100%; max-width: 700px;
+      padding: 36px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius);
+      text-align: left;
+      position: relative; overflow: hidden;
+    }
+    .contact-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .contact-connect-head {
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: 18px; text-align: center;
+    }
+    .contact-socials-row {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+
+    /* ─── Hero pulsing dot ─── */
+    .hero-tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+      animation: pulseDot 2.2s infinite;
+    }
+    @keyframes pulseDot {
+      0%,100% { box-shadow: 0 0 0 0 rgba(91,207,191,0.6); }
+      50%      { box-shadow: 0 0 0 7px rgba(91,207,191,0); }
+    }
+
+.about-card-layout{
+    width:100%;
+    margin-top:40px;
+}
+
+.about-card-row{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:28px;
+    flex-wrap:wrap;
+}
+
+/* TOP 2 CARDS */
+.about-card-row .philosophy-card{
+    flex:1;
+    min-width:320px;
+    max-width:520px;
+}
+
+/* BOTTOM CENTER CARD */
+.about-card-center{
+    display:flex;
+    justify-content:center;
+    margin-top:28px;
+    width:100%;
+}
+
+.mission-card{
+    width:100%;
+    max-width:760px;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+    .about-card-row{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .about-card-row .philosophy-card{
+        width:100%;
+        max-width:100%;
+    }
+
+    .mission-card{
+        max-width:100%;
+    }
+} 
+
+
+/* ═════════ INTERNSHIP VIDEO STYLE ═════════ */
+
+.internship-video-wrap{
+    width:100%;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.internship-video-wrap video{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    display:block;
+    border-radius:20px;
+}
+
+/* PERFECT CENTER ALIGNMENT */
+.internship-media-grid{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:28px;
+    flex-wrap:wrap;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .internship-media-grid{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .internship-card{
+        width:100%;
+        max-width:420px;
+    }
+
+}
+ </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
+
+  <!-- ═══════════════════════ LOADER ═══════════════════════ -->
+  <div id="loader">
+    <div class="loader-logo">Teaching Portfolio</div>
+    <div class="loader-subtitle">Pradnya Kamble</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+
+  <!-- ATMOSPHERIC BACKGROUND -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="mesh-grid"></div>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#home" class="nav-logo">Teaching Portfolio</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#academic">Academics</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#epc">EPC</a></li>
+          <li><a href="#reflection">Reflection</a></li>
+          <li><a href="#internship">Internship</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#home"       class="mobile-link">Home</a>
+    <a href="#about"      class="mobile-link">About Me</a>
+    <a href="#academic"   class="mobile-link">Academics</a>
+    <a href="#teaching"   class="mobile-link">Teaching</a>
+    <a href="#epc"        class="mobile-link">EPC</a>
+    <a href="#reflection" class="mobile-link">Reflection</a>
+    <a href="#internship" class="mobile-link">Internship</a>
+    <a href="#gallery"    class="mobile-link">Gallery</a>
+    <a href="#contact"    class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       1. HOME SECTION
+  ══════════════════════════════════════════════════════ -->
+  <section id="home">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: Content -->
+        <div class="hero-content">
+          <div class="hero-eyebrow" data-reveal="up">
+            <div class="hero-eyebrow-line"></div>
+            <span class="hero-eyebrow-text">Welcome to My Teaching Portfolio</span>
+          </div>
+
+          <h1 class="hero-title" data-reveal="up" style="--i:1">
+            Pradnya 
+            <span class="hero-title-italic">Kamble </span>
+          </h1>
+
+        <div class="hero-role-wrap" data-reveal="up" style="--i:2">
+            I am a&nbsp;<span id="typing-text"></span><span class="typing-cursor"></span>
+          </div>
+
+          <div class="hero-desc" data-reveal="up" style="--i:3">
+            <div class="hero-desc-item"><div class="hero-desc-dot"></div><span>Roll No. : 46 &nbsp;|&nbsp; Dhareshwar B.Ed College</span></div>
+            <div class="hero-desc-item"><div class="hero-desc-dot"></div><span>Academic Year : 2025 – 26</span></div>
+            <div class="hero-desc-item"><div class="hero-desc-dot"></div><span>Guide : Mr. Surendra M. Magar</span></div>
+          </div>
+
+          <div class="hero-actions" data-reveal="up" style="--i:4">
+            <a href="#contact" class="btn-primary">
+              <i class="fas fa-envelope"></i> <span>Get in Touch</span>
+            </a>
+            <a href="MyCV.pdf" target="_blank" class="btn-ghost">
+              <i class="fas fa-eye"></i> <span>View CV</span>
+            </a>
+          </div>
+
+          <div class="hero-socials" data-reveal="up" style="--i:5">
+            <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+            <a href="#" class="social-icon" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="hero-image-wrap" data-reveal="zoom">
+          <div class="hero-img-ring">
+            <div class="hero-frame"></div>
+            <div class="hero-frame-2"></div>
+            <div class="hero-img-inner">
+              <img src="image-profile.jpeg" alt="Profile Photo" class="hero-profile-img">
+            </div>
+            <div class="hero-corner hero-corner-tl"></div>
+            <div class="hero-corner hero-corner-br"></div>
+            <div class="hero-badge hero-badge-1">
+              <i class="fas fa-graduation-cap"></i> B.Ed Student
+            </div>
+            <div class="hero-badge hero-badge-2">
+              <i class="fas fa-flask"></i> Science & Math
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+ 
+
+ <section id="about">
+  <div class="container">
+<!-- Right: Content -->
+<div data-reveal="right">
+
+    <div class="section-label">
+        Who I Am
+    </div>
+
+    <h2 class="section-title">
+        About Me
+    </h2>
+
+    <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+    </div>
+
+    <p style="
+        color:var(--text-2);
+        line-height:1.9;
+        margin-bottom:32px;
+        font-size:0.92rem;
+        font-weight:300;
+    ">
+        Passionate and dedicated B.Ed student with effective communication,
+        classroom management, and interactive teaching skills.
+        Skilled in teaching Science and Mathematics, especially Biology,
+        with a focus on simple and student-friendly learning methods.
+    </p>
+    <div class="about-card-layout">
+
+      <!-- TOP ROW -->
+      <div class="about-card-row">
+
+        <!-- CARD 1 -->
+        <div class="philosophy-card">
+
+          <div class="philosophy-card-head">
+            <div class="philosophy-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+
+            <div class="philosophy-card-title">
+              Teaching Philosophy
+            </div>
+          </div>
+
+          <p>
+            Teaching Philosophy
+I believe in developing not only academic excellence but also moral values, creativity, critical thinking, and lifelong learning skills among students. 
+Through dedication, empathy, and continuous learning, I strive to inspire students to become responsible and successful individuals.
+          </p>
+
+        </div>
+
+
+        <!-- CARD 2 -->
+        <div class="philosophy-card">
+
+          <div class="philosophy-card-head">
+            <div class="philosophy-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+
+            <div class="philosophy-card-title">
+              My Vision
+            </div>
+          </div>
+
+          <p>
+Vision
+To become a compassionate, innovative, and inspiring educator who empowers students with knowledge, values, creativity, and confidence to contribute positively to society.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- BOTTOM CARD -->
+      <div class="about-card-center">
+
+        <div class="philosophy-card mission-card">
+
+          <div class="philosophy-card-head">
+            <div class="philosophy-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+
+            <div class="philosophy-card-title">
+              My Mission
+            </div>
+          </div>
+
+          <p>
+To create a student-centered and interactive learning environment.
+To encourage creativity, critical thinking, and problem-solving skills among learners.
+To use modern teaching techniques and digital tools for effective learning.
+To nurture moral values, discipline, and social responsibility in students.
+To support every learner according to their individual needs and abilities.
+To promote lifelong learning and holistic development among students.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- ══════════════════════════════════════════════════════
+       3. ACADEMIC RECORDS
+  ══════════════════════════════════════════════════════ -->
+  <section id="academic" style="background:rgba(255,255,255,0.012);">
+    <div class="container">
+
+      <div data-reveal="up" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">Qualifications</div>
+        <h2 class="section-title">Academic Records &amp; Achievements</h2>
+        <p class="section-sub" style="max-width:620px; margin:16px auto 0;">
+          A complete overview of my academic journey, qualifications, certifications, and achievements compiled into a single document.
+        </p>
+      </div>
+
+      <div class="academic-pdf-card" data-reveal="up">
+        <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
+        <h3>Academic Records PDF</h3>
+        <p>View detailed academic qualifications, marksheets, certifications, awards, and achievements.</p>
+        <div class="pdf-buttons">
+          <a href="AcademicRecords.pdf" target="_blank" class="btn-primary">
+            <i class="fas fa-eye"></i> <span>View PDF</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     4. TEACHING PRACTICES
+══════════════════════════════════════════════════════ -->
+<section id="teaching">
+
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div data-reveal="up">
+      <div class="section-label">
+        Pedagogy in Action
+      </div>
+
+      <h2 class="section-title">
+        Teaching Practices
+      </h2>
+
+      <p class="section-sub">
+        Exploring my approach to lesson planning, classroom delivery, and reflective teaching through documented evidence.
+      </p>
+    </div>
+
+    <!-- SUBSECTION TABS -->
+    <div class="subsection-tabs" data-reveal="up">
+
+      <button
+        class="subsection-tab active"
+        onclick="switchTab('teaching','lesson-plans', this)"
+      >
+        <i class="fas fa-file-pdf"></i>
+        Lesson Plans
+      </button>
+
+      <button
+        class="subsection-tab"
+        onclick="switchTab('teaching','microteaching', this)"
+      >
+        <i class="fas fa-video"></i>
+        Microteaching
+      </button>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         A. LESSON PLANS PANEL
+    ═══════════════════════════════════════════ -->
+    <div id="teaching-lesson-plans" class="subsection-panel active">
+
+      <div data-reveal="up">
+
+        <div class="pdf-grid">
+
+          <!-- PDF 1 -->
+          <div class="pdf-card">
+
+            <div class="pdf-icon-wrap">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <div class="pdf-title">
+              Maths Integration
+            </div>
+
+            <a
+              href="MathsIntegration.pdf"
+              target="_blank"
+              class="pdf-btn"
+            >
+              <i class="fas fa-eye"></i>
+              View PDF
+            </a>
+
+          </div>
+
+          <!-- PDF 2 -->
+          <div class="pdf-card">
+
+            <div class="pdf-icon-wrap">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <div class="pdf-title">
+              Maths Simulation
+            </div>
+
+            <a
+              href="MathsSimulation.pdf"
+              target="_blank"
+              class="pdf-btn"
+            >
+              <i class="fas fa-eye"></i>
+              View PDF
+            </a>
+
+          </div>
+
+          <!-- PDF 3 -->
+          <div class="pdf-card">
+
+            <div class="pdf-icon-wrap">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <div class="pdf-title">
+              Science Integration
+            </div>
+
+            <a
+              href="ScienceIntegration.pdf"
+              target="_blank"
+              class="pdf-btn"
+            >
+              <i class="fas fa-eye"></i>
+              View PDF
+            </a>
+
+          </div>
+
+          <!-- PDF 4 -->
+          <div class="pdf-card">
+
+            <div class="pdf-icon-wrap">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+
+            <div class="pdf-title">
+              Science Simulation
+            </div>
+
+            <a
+              href="ScienceSimulation.pdf"
+              target="_blank"
+              class="pdf-btn"
+            >
+              <i class="fas fa-eye"></i>
+              View PDF
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         B. MICROTEACHING PANEL
+    ═══════════════════════════════════════════ -->
+    <div id="teaching-microteaching" class="subsection-panel">
+
+      <div data-reveal="up">
+
+        <!-- HEADING -->
+        <div class="category-heading">
+
+          <div class="category-heading-icon">
+            <i class="fas fa-video"></i>
+          </div>
+
+          <div>
+            <div class="category-heading-title">
+              Microteaching Videos
+            </div>
+
+            <div class="category-heading-sub">
+              Classroom Demonstration Sessions
+            </div>
+          </div>
+
+        </div>
+
+        <!-- VIDEO WRAPPER -->
+        <div
+          class="internship-doc-wrapper"
+          data-reveal="up"
+          style="margin-top:50px;"
+        >
+
+          <h3 class="internship-doc-title">
+            Microteaching Documentation
+          </h3>
+
+          <!-- VIDEO GRID -->
+          <div class="internship-media-grid">
+
+            <!-- VIDEO 1 -->
+            <div class="internship-card">
+
+              <div class="internship-video-wrap">
+
+                <video controls>
+                  <source src="micro_vd.mp4" type="video/mp4">
+                </video>
+
+              </div>
+
+              <div class="internship-body">
+
+                <div class="internship-title">
+                  Microteaching Session
+                </div>
+
+                <div class="internship-sub">
+                  Classroom Demonstration Video
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<div class="section-sep"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       5. EPC ACTIVITIES
+  ══════════════════════════════════════════════════════ -->
+  <section id="epc" style="background:rgba(255,255,255,0.012);">
+    <div class="container">
+
+      <div data-reveal="up">
+        <div class="section-label">Enhancement of Professional Capacities</div>
+        <h2 class="section-title">EPC Activities</h2>
+        <p class="section-sub">Documented evidence of professional enhancement activities across semesters — building ICT proficiency, communication, and reflective reading skills.</p>
+      </div>
+
+      <div class="semester-tabs" data-reveal="up">
+        <button class="semester-tab active" onclick="switchSemTab('epc','sem1', this)">
+          <i class="fas fa-star"></i> Semester 1
+        </button>
+        <button class="semester-tab" onclick="switchSemTab('epc','sem2', this)">
+          <i class="fas fa-star"></i> Semester 2
+        </button>
+      </div>
+
+      <!-- EPC Semester 1 -->
+      <div id="epc-sem1" class="semester-panel active">
+        <div class="category-heading">
+          <div class="category-heading-icon"><i class="fas fa-laptop"></i></div>
+          <div class="category-heading-title">ICT</div>
+          <div class="category-heading-sub">Information &amp; Communication Technology</div>
+        </div>
+
+        <div class="internship-doc-wrapper" data-reveal="up">
+          <h3 class="internship-doc-title">ICT Sem 1 : Documentation</h3>
+          <div class="internship-media-grid">
+            <a href="ICT_SEM1_PDF1.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">ICT Activity 01</div>
+              </div>
+            </a>
+<a href="ICT_SEM1_PDF2.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">ICT Activity 02</div>
+              </div>
+            </a>
+<a href="ICT_SEM1_PDF3.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">ICT Activity 03</div>
+              </div>
+            </a>
+<a href="ICT_SEM1_PDF4.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">ICT Activity 04</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="category-heading" style="margin-top:48px;">
+          <div class="category-heading-icon"><i class="fas fa-book-reader"></i></div>
+          <div class="category-heading-title">Reading &amp; Reflection</div>
+          <div class="category-heading-sub">Critical Reading Activities</div>
+        </div>
+
+        <div class="internship-doc-wrapper" data-reveal="up">
+          <h3 class="internship-doc-title">Reading &amp; Reflection Documentation</h3>
+          <div class="internship-media-grid">
+            <a href="106_B.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">106_B - Reading &amp; Reflecting Texts</div>
+              </div>
+            </a>
+            <a href="106_b_RS.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📘</div>
+                <div class="internship-type-badge badge-pdf">Reflection</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">106_B Reflection</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EPC Semester 2 -->
+      <div id="epc-sem2" class="semester-panel">
+        <div class="category-heading">
+          <div class="category-heading-icon"><i class="fas fa-laptop"></i></div>
+          <div class="category-heading-title">ICT</div>
+          <div class="category-heading-sub">Information &amp; Communication Technology</div>
+        </div>
+        <div class="internship-doc-wrapper" data-reveal="up">
+          <h3 class="internship-doc-title">ICT Sem 2 : Documentation</h3>
+          <div class="internship-media-grid">
+            <a href="ICT_SEM2.pdf" target="_blank" class="internship-card">
+              <div class="internship-thumb">
+                <div class="internship-thumb-icon">📄</div>
+                <div class="internship-type-badge badge-pdf">PDF</div>
+              </div>
+              <div class="internship-body">
+                <div class="internship-title">Application of ICT & Digital Teaching Skills</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       6. REFLECTION
+  ══════════════════════════════════════════════════════ -->
+  <section id="reflection">
+    <div class="container">
+      <div data-reveal="up">
+        <div class="section-label">Reflective Learning</div>
+        <h2 class="section-title">Reflection</h2>
+        <p class="section-sub">Personal reflections, classroom insights, learning experiences, and course-based reflective practices documented throughout both semesters.</p>
+      </div>
+
+      <div class="semester-tabs" data-reveal="up">
+        <button class="semester-tab active" onclick="switchSemTab('reflection','sem1', this)">
+          <i class="fas fa-book-open"></i> Semester 1
+        </button>
+        <button class="semester-tab" onclick="switchSemTab('reflection','sem2', this)">
+          <i class="fas fa-book-open"></i> Semester 2
+        </button>
+      </div>
+
+      <!-- Semester 1 -->
+      <div id="reflection-sem1" class="semester-panel active">
+        <div class="category-heading">
+          <div class="category-heading-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="category-heading-title">Course Code</div>
+          <div class="category-heading-sub">Semester 1 Reflection PDFs</div>
+        </div>
+        <div class="pdf-grid">
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">101 - Childhood &amp; Growing Up</div>
+            <a href="101.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="101RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">102 - Contemporary Indian Education, Gender &amp; Society</div>
+            <a href="102.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="102RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">103_8 - Understanding Discipline &amp; School Subject</div>
+            <a href="103_08.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="103_08RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">103_9 - Understanding Discipline &amp; School Subject</div>
+            <a href="103_09.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="103_09RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">104_8 - Pedagogy of the School Subject</div>
+            <a href="104_08.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="104_08RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">104_9 - Pedagogy of the School Subject</div>
+            <a href="104_09.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="104_09RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">105_A - MicroTeaching</div>
+            <a href=" 105_A.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href=" 105_A_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">105_B - Digital Teaching Skill</div>
+            <a href=" 105_B.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href=" 105_b_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">106_A - Planning &amp; Teaching Evaluation</div>
+            <a href="106_A.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="106_a_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+        <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">106_B - Reading & Reflecting on Texts</div>
+            <a href="106_B.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="106_b_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">107_A - Yoga Education</div>
+            <a href="107_A.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="107_a_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">107_B - Health &amp; Wellness Education</div>
+            <a href="107_B.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="107_b_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">108 - Understanding of Self</div>
+            <a href="108_A.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="108_a_RS.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Semester 2 -->
+      <div id="reflection-sem2" class="semester-panel">
+        <div class="category-heading">
+          <div class="category-heading-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="category-heading-title">Course Code</div>
+          <div class="category-heading-sub">Semester 2 Reflection PDFs</div>
+        </div>
+        <div class="pdf-grid">
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">201 - Learning &amp; Teaching</div>
+            <a href="201.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="201_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">202 - Assessment &amp; Evaluation for Learning</div>
+            <a href="202.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="202_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">203 - IKS in Education</div>
+            <a href="203.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="203_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">204 - Practice Lesson</div>
+            <a href="204.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="204_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">205 - Introduction to Internship</div>
+            <a href="205_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">206 - Educational Event Management</div>
+            <a href="206.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="206a_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">206_B - Digital Initiatives for Education</div>
+            <a href="206B.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="206b_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">207 - Application of ICT &amp; Digital Learning</div>
+            <a href="207.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="207_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">208 - Community Engagement</div>
+            <a href="208.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="208a_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-icon-wrap"><i class="fas fa-file-pdf"></i></div>
+            <div class="pdf-title">208_B - Challenges Faced &amp; Solution</div>
+            <a href="208_B.pdf" target="_blank" class="pdf-btn"><i class="fas fa-eye"></i> View PDF</a>
+            <a href="208b_reflection.pdf" target="_blank" class="pdf-btn"><i class="fas fa-book-reader"></i> View Reflection</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     7. INTERNSHIP
+══════════════════════════════════════════════════════ -->
+<section id="internship" style="background:rgba(255,255,255,0.012);">
+
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div data-reveal="up">
+      <div class="section-label">Field Experience</div>
+
+      <h2 class="section-title">
+        Internship
+      </h2>
+
+      <p class="section-sub">
+        Hands-on teaching experience in real classroom environments — capturing observations, lessons taught, and professional growth through images, videos, and documentation.
+      </p>
+    </div>
+
+
+    <!-- ═════════ PDF DOCUMENTATION CARD ═════════ -->
+    <div class="internship-doc-wrapper" data-reveal="up">
+
+      <h3 class="internship-doc-title">
+        Internship Documentation
+      </h3>
+
+      <div class="internship-media-grid">
+
+        <!-- PDF 1 -->
+        <a href="205B_intern.pdf" target="_blank" class="internship-card">
+
+          <div class="internship-thumb">
+            <div class="internship-thumb-icon">📄</div>
+
+            <div class="internship-type-badge badge-pdf">
+              PDF
+            </div>
+          </div>
+
+          <div class="internship-body">
+            <div class="internship-title">
+              205 - Internship
+            </div>
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- ═════════ VIDEO SECTION ═════════ -->
+    <div class="internship-doc-wrapper" data-reveal="up" style="margin-top:50px;">
+
+      <h3 class="internship-doc-title">
+        Internship Classroom Videos
+      </h3>
+
+      <div class="internship-media-grid">
+
+        <!-- VIDEO 1 -->
+        <div class="internship-card">
+
+          <div class="internship-video-wrap">
+
+            <video controls>
+              <source src="intern_vd1.mp4" type="video/mp4">
+            </video>
+
+          </div>
+
+          <div class="internship-body">
+            <div class="internship-title">
+              Classroom Activity
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- VIDEO 2 -->
+        <div class="internship-card">
+
+          <div class="internship-video-wrap">
+
+            <video controls>
+              <source src="intern_vd2.mp4" type="video/mp4">
+            </video>
+
+          </div>
+
+          <div class="internship-body">
+            <div class="internship-title">
+              Teaching Demonstration
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<div class="section-sep"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       8. GALLERY
+  ══════════════════════════════════════════════════════ -->
+  <section id="gallery">
+    <div class="container">
+      <div data-reveal="up">
+        <div class="section-label">Moments &amp; Memories</div>
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">A visual chronicle of my academic journey — classroom moments, campus life, events, and milestones.</p>
+      </div>
+
+      <div class="modern-gallery-grid" data-reveal="up">
+
+        <div class="modern-gallery-item tall" onclick="openLightbox('photo1.jpeg')">
+          <img src="photo1.jpeg" alt="Photo 01" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 01</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo2.jpeg')">
+          <img src="photo2.jpeg" alt="Photo 02" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 02</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo3.jpeg')">
+          <img src="photo3.jpeg" alt="Photo 03" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 03</div>
+        </div>
+
+        <div class="modern-gallery-item wide" onclick="openLightbox('photo4.jpeg')">
+          <img src="photo4.jpeg" alt="Photo 04" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 04</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo5.jpeg')">
+          <img src="photo5.jpeg" alt="Photo 05" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 05</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo6.jpeg')">
+          <img src="photo6.jpeg" alt="Photo 06" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 06</div>
+        </div>
+
+        <div class="modern-gallery-item tall" onclick="openLightbox('photo7.jpeg')">
+          <img src="photo7.jpeg" alt="Photo 07" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 07</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo8.jpeg')">
+          <img src="photo8.jpeg" alt="Photo 08" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 08</div>
+        </div>
+
+        <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo9.jpeg" alt="Photo 09" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+
+           <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo10.jpeg" alt="Photo 010" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+   <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo11.jpeg" alt="Photo 11" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+   <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo12.jpeg" alt="Photo 12" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+   <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo13.jpeg" alt="Photo 13" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+   <div class="modern-gallery-item" onclick="openLightbox('photo9.jpeg')">
+          <img src="photo14.jpeg" alt="Photo 14" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+          <div class="modern-gallery-caption">Photo 09</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Album PDF — outside section for clean spacing -->
+  <div class="gallery-album-wrap">
+    <div class="container">
+      <div class="internship-doc-wrapper" data-reveal="up">
+        <h3 class="internship-doc-title">Gallery Album</h3>
+        <div class="internship-media-grid">
+          <a href="gallery-album.pdf" target="_blank" class="internship-card">
+            <div class="internship-thumb">
+              <div class="internship-thumb-icon">📄</div>
+              <div class="internship-type-badge badge-pdf">PDF</div>
+            </div>
+            <div class="internship-body">
+              <div class="internship-title">Complete Photo Collection</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" onclick="event.stopPropagation()" alt="Gallery Image">
+    <button class="lightbox-close" onclick="closeLightbox()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="section-sep"></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       9. CONTACT
+  ══════════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div data-reveal="up" style="text-align:center; max-width:600px; margin:0 auto 64px;">
+        <div class="section-label" style="justify-content:center;">Get In Touch</div>
+        <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+        <p style="color:var(--text-2); font-size:0.92rem; font-weight:300; line-height:1.85; margin-top:12px;">
+          Have a query, collaboration idea, or simply want to connect? I'd love to hear from you.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div data-reveal="up" style="width:100%; max-width:700px;">
+          <div class="contact-panel">
+            <div class="contact-info-cards">
+              <div class="contact-info-card">
+                <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <div class="contact-info-label">Email</div>
+                  <div class="contact-info-value">pradnyadjadhav0506@gmail.com</div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                <div>
+                  <div class="contact-info-label">Phone</div>
+                  <div class="contact-info-value">+91 7887823510</div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="contact-info-label">Location</div>
+                  <div class="contact-info-value">Pune, Maharashtra</div>
+                </div>
+              </div>
+              <div class="contact-info-card">
+                <div class="contact-info-icon"><i class="fas fa-university"></i></div>
+                <div>
+                  <div class="contact-info-label">Institution</div>
+                  <div class="contact-info-value">D.S.S Mahavidyalaya / SPPU University</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border);">
+              <div class="contact-connect-head">Connect Online</div>
+              <div class="contact-socials-row">
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Teaching Portfolio</div>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#academic">Academics</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#epc">EPC</a></li>
+          <li><a href="#reflection">Reflection</a></li>
+          <li><a href="#internship">Internship</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        Teaching Portfolio &nbsp;·&nbsp; <span>©</span> <span id="year"></span> All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ══════════════════════════════════════════════════════
+       JAVASCRIPT — ALL LOGIC PRESERVED
+  ══════════════════════════════════════════════════ -->
+  <script>
+    /* ─── TAB SWITCHING ─── */
+    function switchTab(section, panelId, btn) {
+      document.querySelectorAll('#' + section + ' .subsection-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#' + section + ' .subsection-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(section + '-' + panelId).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#' + section + '-' + panelId + ' [data-reveal]').forEach(el => {
+        if (!el.classList.contains('revealed')) el.classList.add('revealed');
+      });
+    }
+
+    function switchSemTab(section, semId, btn) {
+      document.querySelectorAll('#' + section + ' .semester-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#' + section + ' .semester-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(section + '-' + semId).classList.add('active');
+      btn.classList.add('active');
+      document.querySelectorAll('#' + section + '-' + semId + ' [data-reveal]').forEach(el => {
+        if (!el.classList.contains('revealed')) el.classList.add('revealed');
+      });
+    }
+
+    /* ─── LOADER ─── */
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200);
+    });
+
+    /* ─── YEAR ─── */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ─── CUSTOM CURSOR ─── */
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx=0, my=0, rx=0, ry=0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    /* ─── SCROLL PROGRESS ─── */
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = pct + '%';
+    }, { passive: true });
+
+    /* ─── NAVBAR ─── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(s => observer.observe(s));
+
+    /* ─── MOBILE NAV ─── */
+    const hamburger  = document.getElementById('hamburger');
+    const navMobile  = document.getElementById('nav-mobile');
+    const navOverlay = document.getElementById('nav-overlay');
+    function toggleMobileNav() {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+      navOverlay.classList.toggle('open');
+    }
+    hamburger.addEventListener('click', toggleMobileNav);
+    navOverlay.addEventListener('click', toggleMobileNav);
+    document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', toggleMobileNav));
+
+    /* ─── TYPING ANIMATION ─── */
+    const roles = ['Professor & Educator','Curriculum Designer','Published Researcher','Academic Mentor','Keynote Speaker'];
+    let rIdx=0, cIdx=0, deleting=false;
+    const typingEl = document.getElementById('typing-text');
+    function typeLoop() {
+      const current = roles[rIdx];
+      if (!deleting) {
+        typingEl.textContent = current.substring(0, cIdx+1);
+        cIdx++;
+        if (cIdx === current.length) { deleting=true; setTimeout(typeLoop,1800); return; }
+      } else {
+        typingEl.textContent = current.substring(0, cIdx-1);
+        cIdx--;
+        if (cIdx === 0) { deleting=false; rIdx=(rIdx+1)%roles.length; }
+      }
+      setTimeout(typeLoop, deleting ? 55 : 85);
+    }
+    typeLoop();
+
+    /* ─── SCROLL REVEAL ─── */
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const i = e.target.style.getPropertyValue('--i');
+          const ms = i ? parseFloat(i) * 90 : 0;
+          setTimeout(() => e.target.classList.add('revealed'), ms);
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    /* ─── LIGHTBOX ─── */
+    window.openLightbox = (imgSrc) => {
+      document.getElementById('lightbox-img').src = imgSrc;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    window.closeLightbox = () => {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    document.getElementById('lightbox').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-img').addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    /* ─── BACK TO TOP ─── */
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 450);
+    }, { passive: true });
+
+    /* ─── PARTICLE CANVAS ─── */
+    (function() {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx    = canvas.getContext('2d');
+      let W, H, particles = [];
+      function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      for (let i=0; i<60; i++) particles.push({
+        x: Math.random()*9999, y: Math.random()*9999,
+        vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15,
+        r: Math.random()*1.2+0.2,
+        a: Math.random()*0.3+0.05
+      });
+      function draw() {
+        ctx.clearRect(0,0,W,H);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if(p.x<0) p.x=W; if(p.x>W) p.x=0;
+          if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+          ctx.beginPath();
+          ctx.arc(p.x%W, p.y%H, p.r, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(201,169,110,${p.a})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* ─── MOUSE PARALLAX ON HERO ─── */
+    document.addEventListener('mousemove', e => {
+      const cx = (e.clientX / window.innerWidth  - 0.5) * 18;
+      const cy = (e.clientY / window.innerHeight - 0.5) * 18;
+      const imgRing = document.querySelector('.hero-img-ring');
+      if (imgRing) imgRing.style.transform = `translate(${cx*0.25}px, ${cy*0.25}px)`;
+    });
+  </script>
+
+</body>
+</html>
